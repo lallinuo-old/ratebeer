@@ -1,1 +1,1 @@
-http://rorbeers.herokuapp.com/
+http://rorbeers.herokuapp.com
