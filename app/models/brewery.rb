@@ -1,4 +1,4 @@
 class Brewery < ActiveRecord::Base
   attr_accessible :name, :year
-  has_many :beers
+  has_many :beers, :dependent => :destroy
 end
