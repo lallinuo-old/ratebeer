@@ -9,11 +9,15 @@
   <b>established year
   <%= @brewery.year %>   </b>
 </p>
-<p>
+  <p> number of beers: <%= @brewery.beers.length%></p>
+
+  <ul>
   <% @brewery.beers.each do |beer| %>
-      <%= link_to beer.name, beer %><br/>
+   <li><%= link_to beer.name, beer %></li>
   <% end %>
-</p>
+</ul>
+
+<%= @brewery.average_rating %>   <br/><br/>
 
 <%= link_to 'Edit', edit_brewery_path(@brewery) %> |
 <%= link_to 'Back', breweries_path %>
