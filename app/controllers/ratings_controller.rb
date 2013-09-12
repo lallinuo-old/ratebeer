@@ -6,13 +6,17 @@ class RatingsController < ApplicationController
     @rating = Rating.new
     @beers = Beer.all
   end
+
+
   def create
-    Rating.create params[:rating]
-    redirect_to ratings_path
+    rating = Rating.create params[:rating]
+    current_user.ratings << rating
+
+    redirect_to user_path current_user
   end
   def destroy
     rating = Rating.find params[:id]
     rating.delete
-    redirect_to ratings_path
+    redirect_to :back
   end
 end

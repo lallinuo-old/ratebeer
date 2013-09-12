@@ -17,7 +17,13 @@
   <% end %>
 </ul>
 
-<%= @brewery.average_rating %>   <br/><br/>
+<% if @brewery.ratings.empty? %>
+
+<% else %>
+    Brewery <%= @brewery.average_rating %>
+<% end %>
+<br/>
+ <br/><br/>
 
 <%= link_to 'Edit', edit_brewery_path(@brewery) %> |
 <%= link_to 'Back', breweries_path %>
