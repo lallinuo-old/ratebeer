@@ -1,9 +1,11 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.14'
-
+gem 'execjs'
+gem 'therubyracer'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
+gem 'bcrypt-ruby', '~> 3.0.0'
 
 group :development, :test do
   gem 'sqlite3'
