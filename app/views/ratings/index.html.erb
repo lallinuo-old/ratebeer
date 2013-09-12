@@ -3,6 +3,7 @@
 
 <p> number of ratings <%= @ratings.count %></p>
 <ul>
+
   <% @ratings.each do |rating| %>
 
       <li> <%=rating%> <%= link_to rating.user.username ,rating.user%></li>
