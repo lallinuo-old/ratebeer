@@ -47,6 +47,7 @@ describe "User" do
   end
 
   it "has favorite style and brewery" do
+    sign_in "Pekka", "foobar1"
     user = User.first
     brewery = FactoryGirl.create :brewery, :name =>"panimo"
     beer = FactoryGirl.create :beer, :style => "Lager", :brewery => brewery

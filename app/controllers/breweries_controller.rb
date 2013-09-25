@@ -1,7 +1,7 @@
 class BreweriesController < ApplicationController
   # GET /breweries
   # GET /breweries.json
-  before_filter :authenticate, :only => [:new, :create, :destroy]
+  before_filter :authenticate, :only => [:destroy]
 
   def index
     @breweries = Brewery.all

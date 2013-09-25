@@ -23,5 +23,6 @@
 
 <br />
 
-<%= link_to 'New Beer', new_beer_path %><br/>
+<%= link_to('New Beer', new_beer_path) if current_user %>
+<br/>
 <%= link_to 'List of brewseries', breweries_path%>
