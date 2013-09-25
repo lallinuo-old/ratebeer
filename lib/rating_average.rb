@@ -9,7 +9,7 @@ module RatingAverage
     }
     average = sum/i
 
-return " has "+ratings.length.to_s+" rating".pluralize(ratings.length)+", average "+average.to_s
+return average;
   end
 
 

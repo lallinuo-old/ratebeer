@@ -8,6 +8,10 @@ gem 'therubyracer'
 gem 'bcrypt-ruby', '~> 3.0.0'
 
 group :development, :test do
+      gem 'rspec-rails', '~> 2.0'
+end
+
+group :development, :test do
   gem 'sqlite3'
 end
 
@@ -31,8 +35,14 @@ end
 gem 'jquery-rails'
 
 # To use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
+# gem 'bcrypt-ruby', '~> 3.0.
 
+group :test do
+      gem 'factory_girl_rails'
+      gem 'capybara'
+      gem 'launchy'
+      gem 'simplecov', :require => false
+end
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'
 

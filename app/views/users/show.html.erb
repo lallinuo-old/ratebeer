@@ -16,7 +16,10 @@
       </li>
   <% end %>
 </ul>
-
+<%if @user.ratings.length > 0%>
+<p>Favorite brewery: <%=@user.favorite_brewery.name%></p>
+<p>Favorite beer style: <%=@user.favorite_style%></p>
+<%end%>
 <p>belongs to: </p><% @user.beer_clubs.each do |club| %>
     <%=link_to club.name, club %>
     <%end%>
