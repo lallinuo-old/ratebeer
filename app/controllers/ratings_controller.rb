@@ -13,6 +13,7 @@ class RatingsController < ApplicationController
     @rating = Rating.new params[:rating]
 
     if @rating.save
+      session[:last_rating] = @rating
       current_user.ratings << @rating
       redirect_to user_path current_user
     else

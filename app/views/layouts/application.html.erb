@@ -14,6 +14,7 @@
   <%= link_to 'users', users_path %>
   <%= link_to 'clubs',  beer_clubs_path %>
   <%= link_to 'places',  places_path %>
+  <%= link_to 'styles', styles_path %>
 
   <% if not current_user.nil? %>
       |
@@ -35,8 +36,8 @@
   <% end %>
 
 </div>
+<hr/>
 
 <%= yield %>
-
 </body>
 </html>
