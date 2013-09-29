@@ -16,6 +16,8 @@ class BeersController < ApplicationController
   # GET /beers/1.json
   def show
     @beer = Beer.find(params[:id])
+    @rating = Rating.new
+    @rating.beer = @beer
 
     respond_to do |format|
       format.html # show.html.erb
@@ -28,7 +30,7 @@ class BeersController < ApplicationController
   def new
     @beer = Beer.new
     @breweries = Brewery.all
-    @styles = ["Weizen", "Lager", "Pale ale", "IPA", "Porter"]
+    @styles = Style.all
 
     respond_to do |format|
       format.html # new.html.erb
@@ -51,7 +53,7 @@ class BeersController < ApplicationController
         format.html { redirect_to @beer, notice: 'Beer was successfully created.' }
         format.json { render json: @beer, status: :created, location: @beer }
       else
-        @styles = ["Weizen", "Lager", "Pale ale", "IPA", "Porter"]
+        @styles = Style.all
         @breweries = Brewery.all
         format.html { render action: "new" }
         format.json { render json: @beer.errors, status: :unprocessable_entity }

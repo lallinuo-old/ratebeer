@@ -16,6 +16,14 @@
 </ul>
 
 
+
+<%= form_for(@membership) do |f| %>
+    <%= f.hidden_field :beer_club_id%>
+    <%= f.hidden_field :user_id %>
+
+    <%= f.submit value="Join this beerclub" %>
+<% end %>
+
 <ul>
 
 </ul>

@@ -42,17 +42,15 @@ class MembershipsController < ApplicationController
   # POST /memberships
   # POST /memberships.json
   def create
+
    @membership = Membership.new(params[:membership])
+
   if current_user.beer_clubs.include? @membership.beer_club
     redirect_to :back , :notice => "Already in club"
   else
     current_user.memberships << @membership
     redirect_to :root
   end
-
-
-
-
   end
 
   # PUT /memberships/1

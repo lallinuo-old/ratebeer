@@ -8,6 +8,7 @@ gem 'therubyracer'
 gem 'bcrypt-ruby', '~> 3.0.0'
 
 group :development, :test do
+      
       gem 'rspec-rails', '~> 2.0'
 end
 
@@ -33,11 +34,15 @@ group :assets do
 end
 
 gem 'jquery-rails'
+gem 'httparty'
+gem "rails-settings-cached", "0.2.4"
+
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.
 
 group :test do
+      gem 'webmock'
       gem 'factory_girl_rails'
       gem 'capybara'
       gem 'launchy'
