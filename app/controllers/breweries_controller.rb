@@ -4,7 +4,8 @@ class BreweriesController < ApplicationController
   before_filter :authenticate, :only => [:destroy]
 
   def index
-    @breweries = Brewery.all
+    @breweries = Brewery.all.sort_by{ |b| b.send(params[:order] || 'name') }
+
 
   end
 

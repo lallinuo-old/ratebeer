@@ -21,10 +21,15 @@ FactoryGirl.define do
   factory :beer do
     name "anonymous"
     brewery
-    style "Lager"
+    style
   end
 
   factory :rating do
     score 10
+  end
+
+  factory :style do
+    style "anonymous"
+    desc "anonymous"
   end
 end

@@ -8,7 +8,7 @@ describe Beer do
   end
 
   it "is not saved without style" do
-    beer = Beer.create :name=>"jou", :style =>""
+    beer = Beer.create :name=>"jou"
     expect(beer.valid?).to be(false)
     expect(Beer.count).to eq(0)
   end

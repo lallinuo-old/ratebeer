@@ -35,12 +35,13 @@ describe "User" do
 
   it "can add beer to database" do
     FactoryGirl.create :brewery
+    FactoryGirl.create :style
     sign_in "Pekka", "foobar1"
     visit new_beer_path
-    select 'anonymous', :from => 'Brewery'
-    select 'Weizen', :from => 'Style'
+     select 'anonymous', :from => 'beer[brewery_id]'
+      select 'anonymous', :from => 'beer[style_id]'
 
-    fill_in 'Name', :with => 'parina'
+    fill_in 'beer[name]', :with => 'parina'
     click_button("Create Beer")
 
     expect(Beer.count).to eq(1)
@@ -50,10 +51,10 @@ describe "User" do
     sign_in "Pekka", "foobar1"
     user = User.first
     brewery = FactoryGirl.create :brewery, :name =>"panimo"
-    beer = FactoryGirl.create :beer, :style => "Lager", :brewery => brewery
+    beer = FactoryGirl.create :beer, :brewery => brewery
     FactoryGirl.create :rating, :score => 50, :beer => beer, :user => user
     visit "/users/1"
-    expect(page).to have_content "Favorite beer style: Lager"
+    expect(page).to have_content "Favorite beer style: anonymous"
     expect(page).to have_content "Favorite brewery: panimo"
 
   end

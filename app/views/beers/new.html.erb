@@ -3,8 +3,8 @@
 
 <%= form_for(@beer) do |f| %>
     Beer name: <%= f.text_field :name %>    <br/>
-    Brewery: <%= f.select :brewery_id, options_from_collection_for_select(@breweries, :id, :name) %></br>
-    Style: <%= f.select :style_id, options_from_collection_for_select(@styles, :id, :style )%><br/>
+    <%= f.label :brewery %> <%= f.select :brewery_id, options_from_collection_for_select(@breweries, :id, :name) %></br>
+    <%= f.label :style %> <%= f.select :style_id, options_from_collection_for_select(@styles, :id, :style )%><br/>
 
     <%= f.submit %>
 

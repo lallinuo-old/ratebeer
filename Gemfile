@@ -2,10 +2,12 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.14'
 gem 'execjs'
+
 gem 'therubyracer'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 gem 'bcrypt-ruby', '~> 3.0.0'
+gem 'database_cleaner', '< 1.1.0'
 
 group :development, :test do
       
@@ -20,7 +22,9 @@ group :production do
    gem 'pg'
    gem 'rails_stdout_logging' 
 end
- 
+gem 'therubyracer'
+gem 'less-rails'
+gem 'twitter-bootstrap-rails'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -40,7 +44,7 @@ gem "rails-settings-cached", "0.2.4"
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.
-
+gem 'selenium-webdriver'
 group :test do
       gem 'webmock'
       gem 'factory_girl_rails'

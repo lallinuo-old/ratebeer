@@ -90,17 +90,20 @@ describe User do
     end
 
     it "is the one with highest rating if several rated" do
+      style1 = FactoryGirl.create(:style, :style =>"tyyli1")
+      style2 = FactoryGirl.create(:style, :style =>"tyyli2")
+      style3 = FactoryGirl.create(:style, :style =>"tyyli3")
 
-      create_beer_with_style("jou", 21, user)
+      create_beer_with_style(style1, 21, user)
 
 
-      create_beer_with_style("Lager", 24, user)
-      create_beer_with_style("Lager", 28, user)
+      create_beer_with_style(style2, 24, user)
+      create_beer_with_style(style2, 28, user)
 
-      create_beer_with_style("Lfwjor", 23, user)
+      create_beer_with_style(style3, 23, user)
 
       expect(Rating.count).to eq(4)
-      expect(user.favorite_style).to eq("Lager")
+      expect(user.favorite_style.to_s).to eq(style2.to_s)
     end
   end
 
