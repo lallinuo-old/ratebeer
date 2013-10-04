@@ -1,1 +1,1 @@
-[![Code Climate](https://codeclimate.com/github/mluukkai/ratebeer.png)](https://codeclimate.com/github/Zuassi/ratebeer)http://rorbeers.herokuapp.com
+[![Code Climate](https://codeclimate.com/github/Zuassi/ratebeer.png)](https://codeclimate.com/github/Zuassi/ratebeer)http://rorbeers.herokuapp.com
