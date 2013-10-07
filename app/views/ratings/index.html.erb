@@ -1,4 +1,4 @@
-<% cache :expires_in => 10.minutes do %>
+<% cache :expires_in => 5.seconds do %>
 
     <div class="container">
 
@@ -36,9 +36,10 @@
             <tr><td></td><td>favorite beer</td><td>favorite brewery</td><td>prefered style</td><td>ratings</td></tr>
             </thead>
             <% @top_users.each do |user| %>
-
+                    <%if user.ratings.count > 0 %>
             <tr><td><%= link_to user.username, user%></td><td><%= link_to user.favorite_beer.name, user.favorite_beer %><td><%= link_to user.favorite_brewery.name, user.favorite_brewery %></td><td><%=link_to user.favorite_style.style, user.favorite_style %></td><td><%= user.ratings.count %>
-            <% end %>
+                  <%end%>
+                  <% end %>
             </table>
         <div class="col-md-1">
       </div>
@@ -57,4 +58,5 @@
           </div>
         </div>
 </div>
-<%end%>
+
+        <%end%>
