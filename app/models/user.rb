@@ -16,7 +16,10 @@ class User < ActiveRecord::Base
       errors.add :password, "Password must contain numbers/symbols"
     end
   end
+  def self.top_users
+    sorted_by_rating_in_desc_order =User.all.sort_by{ |b| -b.ratings.count }.first(3)
 
+  end
   def favorite_beer
     return nil if ratings.empty?
     ratings.sort_by{ |r| r.score }.last.beer

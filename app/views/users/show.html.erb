@@ -11,7 +11,7 @@
       <li>
         <%= rating %>
         <% if currently_signed_in?(@user)%>
-            <%= link_to 'delete', rating, :method => :delete, :data => { :confirm => 'Are you sure?' } %>
+            <%= link_to 'delete', rating, :class=>"btn btn-danger", :method => :delete, :data => { :confirm => 'Are you sure?' } %>
         <% end %>
       </li>
   <% end %>
@@ -20,14 +20,21 @@
 <p>Favorite brewery: <%=@user.favorite_brewery.name%></p>
 <p>Favorite beer style: <%=@user.favorite_style%></p>
 <%end%>
-<p>belongs to: </p><% @user.beer_clubs.each do |club| %>
-    <%=link_to club.name, club %>
+
+<b>belongs to:</b>
+<ul>
+<% @memberships.each do |ms| %>
+   <li> <%=link_to ms.beer_club.name, ms.beer_club %></li>
     <%end%>
+  </ul>
 <br/>
+<b>applications:</b>
+<% @applications.each do |ms| %>
+    <li> <%=link_to ms.beer_club.name, ms.beer_club %></li>
+<%end%>
+</ul>
 
-<% if currently_signed_in?(@user)%>
-    <td><%= link_to 'Edit', edit_user_path(@user) %></td>
-    <td><%= link_to 'Destroy', @user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-<% end %>
+<%= edit_and_destroy_buttons(@user) %>
 
-<%= link_to 'Back', users_path %>
+
+<%= link_to 'Back', users_path, :class => 'btn btn-primary' %>

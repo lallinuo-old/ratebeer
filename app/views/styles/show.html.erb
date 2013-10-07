@@ -12,6 +12,7 @@
 <li><%=link_to beer, beer %>  </li>
  <%end%>
   </ul>
+<%= edit_and_destroy_buttons(@style) %>
 
-<%= link_to 'Edit', edit_style_path(@style) %> |
-<%= link_to 'Back', styles_path %>
+
+<%= link_to 'Back', styles_path, :class => 'btn btn-primary' %>

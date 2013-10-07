@@ -1,10 +1,14 @@
 class BeersController < ApplicationController
   before_filter :ensure_that_signed_in, :except => [:index, :show]
 
+
   # GET /beers
   # GET /beers.json
   def index
-    @beers = Beer.all.sort_by{ |b| b.send(params[:order] || 'name') }
+    @beers = Beer.all
+    @order = params[:order] || 'name'
+
+    @beers = Beer.all(:include => [:brewery, :style]).sort_by{ |b| b.send(@order) }
 
     respond_to do |format|
       format.html # index.html.erb
@@ -15,6 +19,7 @@ class BeersController < ApplicationController
   # GET /beers/1
   # GET /beers/1.json
   def show
+
     @beer = Beer.find(params[:id])
     @rating = Rating.new
     @rating.beer = @beer
@@ -46,6 +51,7 @@ class BeersController < ApplicationController
   # POST /beers
   # POST /beers.json
   def create
+    expire_fragment :action => :index
     @beer = Beer.new(params[:beer])
 
     respond_to do |format|
@@ -64,6 +70,7 @@ class BeersController < ApplicationController
   # PUT /beers/1
   # PUT /beers/1.json
   def update
+    expire_fragment :action => :index
     @beer = Beer.find(params[:id])
 
     respond_to do |format|
@@ -80,6 +87,7 @@ class BeersController < ApplicationController
   # DELETE /beers/1
   # DELETE /beers/1.json
   def destroy
+    expire_fragment :action => :index
     @beer = Beer.find(params[:id])
     @beer.destroy
 

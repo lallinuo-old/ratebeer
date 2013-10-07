@@ -1,6 +1,7 @@
 <h1>Listing memberships</h1>
 
-<table>
+<table class="table table-hover">
+  <thead>
   <tr>
     <th>Beer club</th>
     <th>User</th>
@@ -8,7 +9,7 @@
     <th></th>
     <th></th>
   </tr>
-
+  </thead>
 <% @memberships.each do |membership| %>
   <tr>
     <td><%= membership.beer_club_id %></td>

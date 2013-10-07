@@ -23,9 +23,14 @@ Ratebeer::Application.routes.draw do
   resources :sessions, :only => [:new, :create, :destroy]
 
   get 'signin', to: 'sessions#new'
-  get 'signout', to: 'sessions#destroy'
+  delete 'signout', to: 'sessions#destroy'
 
-
+  resources :breweries do
+    post 'toggle_activity', :on => :member
+  end
+  resources :memberships do
+    post 'toggle_confirmation', :on => :member
+  end
 
 
   # The priority is based upon order of creation:

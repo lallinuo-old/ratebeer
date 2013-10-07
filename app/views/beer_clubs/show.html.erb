@@ -8,10 +8,22 @@
 
   <p>Founded: <%= @beer_club.founded %></p>
 
-<b>Jäsenet</b>
+
+<b>Members</b>
 <ul>
-  <% @beer_club.members.each do |member| %>
-      <li><%= link_to member.username, member %></li>
+  <% @confirmed.each do |member| %>
+      <li><%= link_to member.user.username, member %></li>
+  <% end %>
+</ul>
+
+
+
+<b>Applications</b>
+<ul>
+  <% @unconfirmed.each do |member| %>
+      <li><%= link_to member.user.username, member %> <%= link_to "confirm", toggle_confirmation_membership_path(member.id), :method => :post, :class => "btn" %>
+      </li>
+
   <% end %>
 </ul>
 
@@ -28,5 +40,7 @@
 
 </ul>
 
-<%= link_to 'Edit', edit_beer_club_path(@beer_club) %> |
-<%= link_to 'Back', beer_clubs_path %>
+<%= link_to 'Edit', edit_beer_club_path(@beer_club), :class => 'btn btn-primary' %>
+<%= link_to 'Destroy', @beer_club, :class => 'btn btn-danger', method: :delete, data: { confirm: 'Are you sure?' } %>
+
+<%= link_to 'Back', beer_clubs_path, :class => 'btn btn-primary' %>

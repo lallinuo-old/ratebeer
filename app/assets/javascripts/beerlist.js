@@ -7,7 +7,7 @@ BEERS.show = function(){
 
     $.each(BEERS.list, function (index, beer) {
         table.append('<tr>'
-            +'<td>'+beer['name']+'</td>'
+            +'<td><a href=beers/'+beer['id']+'>'+beer["name"]+'</a></td>'
             +'<td>'+beer['style']['style']+'</td>'
             +'<td>'+beer['brewery']['name']+'</td>'
             +'</tr>');

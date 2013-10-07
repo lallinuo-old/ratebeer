@@ -1,11 +1,60 @@
+<% cache :expires_in => 10.minutes do %>
 
-<h1>List of ratings</h1>
+    <div class="container">
 
-<p> number of ratings <%= @ratings.count %></p>
-<ul>
 
-  <% @ratings.each do |rating| %>
 
-      <li> <%=rating%> <%= link_to rating.user.username ,rating.user%></li>
-  <% end %>
-</ul>
+    <div class="row">
+        <div class="span4">
+            <h2>top beers</h2>
+                <%= render 'list', :items => @top_beers %>
+            </div>
+        <div class="span4">
+            <h2>top breweries</h2>
+            <%= render 'list', :items => @top_breweries%>
+        </div>
+        <div class="span4">
+            <h2>top styles</h2>
+            <table class="table table-hover">
+                <thead>
+                    <tr><td></td><td>average</td></tr>
+                </thead>
+                    <% @top_styles.each do |i| %>
+
+                    <tr><td><%= link_to i.style, i %></td><td><%= round(i.average_rating)%></td></tr>
+                        <% end %>
+
+            </table >
+        </div>
+    </div>
+
+    <div class="row">
+      <div class="span12">
+            <h2>most active users</h2>
+            <table class="table table-hover">
+            <thead>
+            <tr><td></td><td>favorite beer</td><td>favorite brewery</td><td>prefered style</td><td>ratings</td></tr>
+            </thead>
+            <% @top_users.each do |user| %>
+
+            <tr><td><%= link_to user.username, user%></td><td><%= link_to user.favorite_beer.name, user.favorite_beer %><td><%= link_to user.favorite_brewery.name, user.favorite_brewery %></td><td><%=link_to user.favorite_style.style, user.favorite_style %></td><td><%= user.ratings.count %>
+            <% end %>
+            </table>
+        <div class="col-md-1">
+      </div>
+
+        <div class="row">
+          <div class="span12">
+            <h2>recent ratings</h2>
+
+            <ul>
+
+              <% @latest_ratings.each do |rating| %>
+
+                  <li><%=rating%> by: <%= link_to rating.user.username ,rating.user%></li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+</div>
+<%end%>

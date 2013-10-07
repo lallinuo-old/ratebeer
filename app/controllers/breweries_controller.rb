@@ -4,14 +4,25 @@ class BreweriesController < ApplicationController
   before_filter :authenticate, :only => [:destroy]
 
   def index
-    @breweries = Brewery.all.sort_by{ |b| b.send(params[:order] || 'name') }
 
+    @active_breweries = Brewery.active
+    @retired_breweries = Brewery.retired
 
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @breweries }
+    end
   end
-
   # GET /breweries/1
   # GET /breweries/1.json
+  def toggle_activity
+    brewery = Brewery.find(params[:id])
+    brewery.update_attribute :active, (not brewery.active)
 
+    new_status = brewery.active? ? "active" : "retired"
+
+    redirect_to :back, :notice => "brewery activity stataus changed to #{new_status}"
+  end
 
   def show
     @brewery = Brewery.find(params[:id])
@@ -22,9 +33,11 @@ class BreweriesController < ApplicationController
     end
   end
 
+
   # GET /breweries/new
   # GET /breweries/new.json
   def new
+
     @brewery = Brewery.new
 
     respond_to do |format|
@@ -41,6 +54,8 @@ class BreweriesController < ApplicationController
   # POST /breweries
   # POST /breweries.json
   def create
+    expire_action :action => :index
+
     @brewery = Brewery.new(params[:brewery])
 
     respond_to do |format|
@@ -57,6 +72,8 @@ class BreweriesController < ApplicationController
   # PUT /breweries/1
   # PUT /breweries/1.json
   def update
+    expire_action :action => :index
+
     @brewery = Brewery.find(params[:id])
 
     respond_to do |format|
@@ -73,6 +90,8 @@ class BreweriesController < ApplicationController
   # DELETE /breweries/1
   # DELETE /breweries/1.json
   def destroy
+    expire_action :action => :index
+
     @brewery = Brewery.find(params[:id])
     @brewery.destroy
 

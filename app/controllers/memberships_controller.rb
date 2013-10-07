@@ -26,7 +26,7 @@ class MembershipsController < ApplicationController
   def new
     @users = User.all
     @beer_clubs = BeerClub.all
-    @membership = Membership.new
+    @membership = Membership.new(:confirmed=>false)
 
     respond_to do |format|
       format.html # new.html.erb
@@ -49,7 +49,7 @@ class MembershipsController < ApplicationController
     redirect_to :back , :notice => "Already in club"
   else
     current_user.memberships << @membership
-    redirect_to :root
+    redirect_to @membership.beer_club
   end
   end
 
@@ -79,5 +79,22 @@ class MembershipsController < ApplicationController
       format.html { redirect_to memberships_url }
       format.json { head :no_content }
     end
+  end
+
+  def toggle_confirmation
+    membership = Membership.find(params[:id])
+    bc = membership.beer_club
+    if current_user_is_bc_member?(bc)
+      if(current_user)
+      membership.update_attribute :confirmed, (not membership.confirmed)
+
+      new_status = membership.confirmed? ? "confirmed" : "removed"
+
+      redirect_to :back, :notice => "User membership #{new_status}"
+        return
+      end
+    end
+    redirect_to :back, :notice => "You are not beerclub member"
+
   end
 end

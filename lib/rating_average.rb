@@ -7,9 +7,13 @@ module RatingAverage
       sum+=rating.score
       i+=1
     }
+    if sum==0
+      return 0
+    end
     average = sum/i
+    return average
 
-return average;
+
   end
 
 

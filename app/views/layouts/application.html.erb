@@ -1,3 +1,12 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Ratebeer</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
 <div class="navbar navbar-fixed-top">
   <div class="navbar-inner">
     <div class="container">
@@ -20,16 +29,30 @@
               <li><%= link_to 'signin', signin_path %></li>
               <li><%= link_to 'signup', signup_path %></li>
           <% else %>
-              <li><%= link_to current_user.username, current_user %></li>
-              <li><%= link_to "rate a beer", new_rating_path %></li>
-              <li><%= link_to "join a club", new_membership_path %></li>
-              <li><%= link_to 'signout', signout_path, :method => :delete%></li>
+              <div class="btn-group">
+                <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                  <%= current_user.username %>
+                  <span class="caret"></span>
+                    </a>
+                  <ul class="dropdown-menu">
+                    <li><%= link_to "my page", current_user %></li>
+
+                    <li><%= link_to "rate a beer", new_rating_path %></li>
+                  <li><%= link_to "join a club", new_membership_path  %></li>
+                  <li><%= link_to 'signout', signout_path, :method => :delete%></li>
+
+
+
+                </ul>
+              </div>
           <% end %>
         </ul>
       </div>
     </div>
   </div>
+
 </div>
+
 <div class="container">
   <div class="row">
     <div class="span9">
@@ -40,3 +63,5 @@
     </div>
   </div>
 </div>
+</body>
+</html>

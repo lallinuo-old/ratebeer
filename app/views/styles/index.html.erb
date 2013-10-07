@@ -1,6 +1,7 @@
 <h1>Styles</h1>
 
-<table>
+<table class="table table-hover">
+  <thead>
   <tr>
     <th>Desc</th>
     <th>Style</th>
@@ -8,7 +9,7 @@
     <th></th>
     <th></th>
   </tr>
-
+  </thead>
 <% @styles.each do |style| %>
   <tr>
     <td><%= link_to style, style %></td>
@@ -21,4 +22,4 @@
 
 <br />
 
-<%= link_to 'New Style', new_style_path %>
+<%= link_to 'New Style', new_style_path, :class => 'btn btn-primary' %>
